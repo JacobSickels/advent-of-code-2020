@@ -1,6 +1,5 @@
 (ns advent-of-code-2020.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn read-file [file]
+  (with-open [reader (clojure.java.io/reader file)]
+    (reduce conj [] (line-seq reader))))
