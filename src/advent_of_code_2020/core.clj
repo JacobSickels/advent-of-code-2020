@@ -5,4 +5,4 @@
     (reduce conj [] (line-seq reader))))
 
 (defn xor [& args]
-  (and (some true? (vec args)) (not (every? true? (vec args)))))
+  (not (apply = args)))
