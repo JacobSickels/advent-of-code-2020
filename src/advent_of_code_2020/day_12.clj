@@ -1,11 +1,5 @@
 (ns advent-of-code-2020.day-12)
 
-(def test-data ["F10"
-                "N3"
-                "F7"
-                "R90"
-                "F11"])
-
 (defn format-data [input]
   (map #(list (first %) (Integer/parseInt (apply str (rest %))))
        input))
@@ -34,14 +28,6 @@
          \E [[(+ x change) y] facing]
          \S [[x (- y change)] facing]
          \W [[(- x change) y] facing])))
-    
-; Action N means to move north by the given value.
-; Action S means to move south by the given value.
-; Action E means to move east by the given value.
-; Action W means to move west by the given value.
-; Action L means to turn left the given number of degrees.
-; Action R means to turn right the given number of degrees.
-; Action F means to move forward by the given value in the direction the ship is currently facing.
 
 (defn day-12 [input]
   (let [data (format-data input)]
@@ -54,13 +40,8 @@
         (let [[next-point next-facing] (next-point (first directions) point facing)]
           (recur (rest directions) next-point next-facing (conj acc next-point)))))))
 
-;Action N means to move the waypoint north by the given value.
-;Action S means to move the waypoint south by the given value.
-;Action E means to move the waypoint east by the given value.
-;Action W means to move the waypoint west by the given value.
-;Action L means to rotate the waypoint around the ship left (counter-clockwise) the given number of degrees.
-;Action R means to rotate the waypoint around the ship right (clockwise) the given number of degrees.
-;Action F means to move forward to the waypoint a number of times equal to the given value.
+
+; Part 2 ~~~~~~~~~~~~
 
 (defn rotate-point [[x y] [wX wY] direction]
   (case direction
